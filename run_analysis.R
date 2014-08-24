@@ -139,6 +139,9 @@ mergeStd<-workingDataSet[,c(1,2,grep("std", colnames(workingDataSet)))]
 mergeMean<-workingDataSet[,grep("mean", colnames(workingDataSet))]
 # cbind the tables together
 datasetOne<-cbind(mergeStd,mergeMean)
+# clean up the column names, remove the "..." & ".."
+colnames(datasetOne)<-sub("[.][.][.]","-",colnames(datasetOne))
+colnames(datasetOne)<-sub("[.][.]","",colnames(datasetOne))
 # save datasetOne into results folder
 saveTable(datasetOne,"datasetOne")
 
