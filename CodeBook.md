@@ -27,6 +27,7 @@ datasetOne.csv (10299 rows and 81 columns)
 datasetTwo.csv (180 rows and 81 columns)
 
 |DatasetOne	|DatasetTwo|
+|-----------|-------------|
 |id	|id|
 |activity	|activity|
 |tBodyAcc.std...X	|tBodyAcc.std...X_mean||
