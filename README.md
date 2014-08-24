@@ -24,3 +24,4 @@ In the "working Directory":
 * UCI HAR Dataset.zip
 * results/datasetOne.csv
 * results/datasetTwo.csv
+* submit.txt
