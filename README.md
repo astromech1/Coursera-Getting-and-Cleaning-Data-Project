@@ -21,6 +21,6 @@ Expected output
 
 In the "working Directory":
 
-# data.zip
-# results/datasetOne.csv
-# results/datasetTwo.csv
+* data.zip
+* results/datasetOne.csv
+* results/datasetTwo.csv
