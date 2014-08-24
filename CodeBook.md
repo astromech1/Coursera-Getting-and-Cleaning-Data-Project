@@ -1,27 +1,29 @@
-Code Book
+#Code Book
 Description of the run_analytics.R
 
-Build Environmentv and Getting Data
+##Build Environmentv and Getting Data
 
-Load library plyr
-Define Global Variables
-Check the directory structure for the ZIP file prior to download.
-Download the required data from (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) only if needed.
-Create results folder if one does not exist
-Processing Data and build Results Files
+1. Load library plyr
+2. Define Global Variables
+3. Check the directory structure for the ZIP file prior to download.
+4. Download the required data from (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) only if needed.
+5. Create results folder if one does not exist
 
-Use the feature data set (features.txt) to build the column names
-Build train data frame using X_train.txt col.name = features data set), y_train.txt (col.name = activity labels), subject_train.txt (col.names = ids)
-Build test data frame using X_test.txt (col.name = features data set), y_test.txt (col.name = activity labels), subject_test.txt (col.names = ids)
-Merge train and test data frames using rbind
-Reorder the data frame by column name using arrange
-Build data frame "activityLabels" table using activity_labels.txt
-Use "activityLables" to label activities
-Push the mean,std into datasetOne
-Saves datasetOne into results/datasetOne.csv
-Use ddply to subset the data frame, apply a function (colMeans) to calculate mean then combine results into a data frame
-Appends "_mean|" to all data columns in datasetTwo
-Saves datasetTwo into results/datasetTwo.csv
+##Processing Data and build Results Files
+
+1. Use the feature data set (features.txt) to build the column names
+2. Build train data frame using X_train.txt col.name = features data set), y_train.txt (col.name = activity labels), subject_train.txt (col.names = ids)
+3. Build test data frame using X_test.txt (col.name = features data set), y_test.txt (col.name = activity labels), subject_test.txt (col.names = ids)
+4. Merge train and test data frames using rbind
+5. Reorder the data frame by column name using arrange
+6. Build data frame "activityLabels" table using activity_labels.txt
+7. Use "activityLables" to label activities
+8. Push the mean,std into datasetOne
+9. Saves datasetOne into results/datasetOne.csv
+10. Use ddply to subset the data frame, apply a function (colMeans) to calculate mean then combine results into a data frame
+11. Appends "_mean|" to all data columns in datasetTwo
+12. Saves datasetTwo into results/datasetTwo.csv
+
 datasetOne.csv (10299 rows and 81 columns)
 
 datasetTwo.csv (180 rows and 81 columns)
