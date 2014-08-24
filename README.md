@@ -21,6 +21,6 @@ souurce("run_analysis.R")
 
 In the "working Directory":
 
-* data.zip
+* UCI HAR Dataset.zip
 * results/datasetOne.csv
 * results/datasetTwo.csv
