@@ -24,9 +24,39 @@ Description of the run_analytics.R
 11. Appends "_mean|" to all data columns in datasetTwo
 12. Saves datasetTwo into results/datasetTwo.csv
 
-datasetOne.csv (10299 rows and 81 columns)
+##Variables Used
 
-datasetTwo.csv (180 rows and 81 columns)
+* url - the url of the data
+* zipfile - defins the name of the zip file 
+* resultsFolder -  defines the results folder
+* features - (data.frame) contains to features.txt used for column names
+* activityLables- (data.frame) contains the activity_labels.txt from buildTable used for column names
+* train - (data.frame) contains the train data from buildTables
+* test - (data.frame) contains the test data from buildTables
+* workingDataSet - contains the merged train and test data.framse using cbind the arrange (via "id")
+* mergeStd - contains the "std" columns from workingDataSet
+* mergeMean - contains the "mean" columns from workingDataSet
+* datasetOne - merged mergeStd and mergeMean using cbind
+* datasetTwo - use ddply for each subset (id and activity) of a datasetOne then apply the colMeans function to get the average of the columns then combine results into a data.frame. Finish the data.frame by using paste to add "_mean"
+
+##Functions Used
+* genTainData - uses the train files in the zip files to create three data.frames (using the buildTable function) for the subject_data, y_data and X_data.
+	* argument features - used to define the column name for the x_data data.frame
+	* return - data.frame of subject_data,y_data and x_data using cbind.
+* genTestData - uses the test files in the zip files to create three data.frames (using the buildTable function) for the subject_data, y_data and X_data.
+	* argument features - used to define the column name for the x_data data.frame
+	* return - data.frame of subject_data,y_data and x_data using cbind.
+* buildTable - uses unz to extract the requested file from the zip file and creates a data.frame and returns the same
+	* argument filename - location and name of file within the zipfiles
+	* argument colNames - column names to be used)
+	* return - data.frame
+* saveTable - saves the data.frame as a csv
+	* argument data - the data.frame
+	* argument name - the name of the file (csv)
+
+##Output
+datasetOne.csv (10299 rows and 81 columns)  
+datasetTwo.csv (180 rows and 81 columns)  
 
 |DatasetOne	|DatasetTwo|
 |-----------|-------------|

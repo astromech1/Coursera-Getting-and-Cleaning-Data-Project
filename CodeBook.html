@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title></title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<p>#Code Book
+Description of the run_analytics.R</p>
+
+<p>##Build Environmentv and Getting Data</p>
+
+<ol>
+<li>Load library plyr</li>
+<li>Define Global Variables</li>
+<li>Check the directory structure for the ZIP file prior to download.</li>
+<li>Download the required data from (<a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a>) only if needed.</li>
+<li>Create results folder if one does not exist</li>
+</ol>
+
+<p>##Processing Data and build Results Files</p>
+
+<ol>
+<li>Use the feature data set (features.txt) to build the column names</li>
+<li>Build train data frame using X_train.txt col.name = features data set), y_train.txt (col.name = activity labels), subject_train.txt (col.names = ids)</li>
+<li>Build test data frame using X_test.txt (col.name = features data set), y_test.txt (col.name = activity labels), subject_test.txt (col.names = ids)</li>
+<li>Merge train and test data frames using rbind</li>
+<li>Reorder the data frame by column name using arrange</li>
+<li>Build data frame &ldquo;activityLabels&rdquo; table using activity_labels.txt</li>
+<li>Use &ldquo;activityLables&rdquo; to label activities</li>
+<li>Push the mean,std into datasetOne</li>
+<li>Saves datasetOne into results/datasetOne.csv</li>
+<li>Use ddply to subset the data frame, apply a function (colMeans) to calculate mean then combine results into a data frame</li>
+<li>Appends &ldquo;_mean|&rdquo; to all data columns in datasetTwo</li>
+<li>Saves datasetTwo into results/datasetTwo.csv</li>
+</ol>
+
+<p>datasetOne.csv (10299 rows and 81 columns)</p>
+
+<p>datasetTwo.csv (180 rows and 81 columns)</p>
+
+<table><thead>
+<tr>
+<th>DatasetOne</th>
+<th>DatasetTwo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>activity</td>
+<td>activity</td>
+</tr>
+<tr>
+<td>tBodyAcc.std&hellip;X</td>
+<td>tBodyAcc.std&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tBodyAcc.std&hellip;Y</td>
+<td>tBodyAcc.std&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tBodyAcc.std&hellip;Z</td>
+<td>tBodyAcc.std&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tGravityAcc.std&hellip;X</td>
+<td>tGravityAcc.std&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tGravityAcc.std&hellip;Y</td>
+<td>tGravityAcc.std&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tGravityAcc.std&hellip;Z</td>
+<td>tGravityAcc.std&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tBodyAccJerk.std&hellip;X</td>
+<td>tBodyAccJerk.std&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tBodyAccJerk.std&hellip;Y</td>
+<td>tBodyAccJerk.std&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tBodyAccJerk.std&hellip;Z</td>
+<td>tBodyAccJerk.std&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tBodyGyro.std&hellip;X</td>
+<td>tBodyGyro.std&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tBodyGyro.std&hellip;Y</td>
+<td>tBodyGyro.std&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tBodyGyro.std&hellip;Z</td>
+<td>tBodyGyro.std&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tBodyGyroJerk.std&hellip;X</td>
+<td>tBodyGyroJerk.std&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tBodyGyroJerk.std&hellip;Y</td>
+<td>tBodyGyroJerk.std&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tBodyGyroJerk.std&hellip;Z</td>
+<td>tBodyGyroJerk.std&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tBodyAccMag.std..</td>
+<td>tBodyAccMag.std.._mean</td>
+</tr>
+<tr>
+<td>tGravityAccMag.std..</td>
+<td>tGravityAccMag.std.._mean</td>
+</tr>
+<tr>
+<td>tBodyAccJerkMag.std..</td>
+<td>tBodyAccJerkMag.std.._mean</td>
+</tr>
+<tr>
+<td>tBodyGyroMag.std..</td>
+<td>tBodyGyroMag.std.._mean</td>
+</tr>
+<tr>
+<td>tBodyGyroJerkMag.std..</td>
+<td>tBodyGyroJerkMag.std.._mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.std&hellip;X</td>
+<td>fBodyAcc.std&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.std&hellip;Y</td>
+<td>fBodyAcc.std&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.std&hellip;Z</td>
+<td>fBodyAcc.std&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.std&hellip;X</td>
+<td>fBodyAccJerk.std&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.std&hellip;Y</td>
+<td>fBodyAccJerk.std&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.std&hellip;Z</td>
+<td>fBodyAccJerk.std&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.std&hellip;X</td>
+<td>fBodyGyro.std&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.std&hellip;Y</td>
+<td>fBodyGyro.std&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.std&hellip;Z</td>
+<td>fBodyGyro.std&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyAccMag.std..</td>
+<td>fBodyAccMag.std.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyAccJerkMag.std..</td>
+<td>fBodyBodyAccJerkMag.std.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyGyroMag.std..</td>
+<td>fBodyBodyGyroMag.std.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyGyroJerkMag.std..</td>
+<td>fBodyBodyGyroJerkMag.std.._mean</td>
+</tr>
+<tr>
+<td>tBodyAcc.mean&hellip;X</td>
+<td>tBodyAcc.mean&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tBodyAcc.mean&hellip;Y</td>
+<td>tBodyAcc.mean&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tBodyAcc.mean&hellip;Z</td>
+<td>tBodyAcc.mean&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tGravityAcc.mean&hellip;X</td>
+<td>tGravityAcc.mean&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tGravityAcc.mean&hellip;Y</td>
+<td>tGravityAcc.mean&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tGravityAcc.mean&hellip;Z</td>
+<td>tGravityAcc.mean&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tBodyAccJerk.mean&hellip;X</td>
+<td>tBodyAccJerk.mean&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tBodyAccJerk.mean&hellip;Y</td>
+<td>tBodyAccJerk.mean&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tBodyAccJerk.mean&hellip;Z</td>
+<td>tBodyAccJerk.mean&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tBodyGyro.mean&hellip;X</td>
+<td>tBodyGyro.mean&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tBodyGyro.mean&hellip;Y</td>
+<td>tBodyGyro.mean&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tBodyGyro.mean&hellip;Z</td>
+<td>tBodyGyro.mean&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tBodyGyroJerk.mean&hellip;X</td>
+<td>tBodyGyroJerk.mean&hellip;X_mean</td>
+</tr>
+<tr>
+<td>tBodyGyroJerk.mean&hellip;Y</td>
+<td>tBodyGyroJerk.mean&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>tBodyGyroJerk.mean&hellip;Z</td>
+<td>tBodyGyroJerk.mean&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>tBodyAccMag.mean..</td>
+<td>tBodyAccMag.mean.._mean</td>
+</tr>
+<tr>
+<td>tGravityAccMag.mean..</td>
+<td>tGravityAccMag.mean.._mean</td>
+</tr>
+<tr>
+<td>tBodyAccJerkMag.mean..</td>
+<td>tBodyAccJerkMag.mean.._mean</td>
+</tr>
+<tr>
+<td>tBodyGyroMag.mean..</td>
+<td>tBodyGyroMag.mean.._mean</td>
+</tr>
+<tr>
+<td>tBodyGyroJerkMag.mean..</td>
+<td>tBodyGyroJerkMag.mean.._mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.mean&hellip;X</td>
+<td>fBodyAcc.mean&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.mean&hellip;Y</td>
+<td>fBodyAcc.mean&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.mean&hellip;Z</td>
+<td>fBodyAcc.mean&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.meanFreq&hellip;X</td>
+<td>fBodyAcc.meanFreq&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.meanFreq&hellip;Y</td>
+<td>fBodyAcc.meanFreq&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyAcc.meanFreq&hellip;Z</td>
+<td>fBodyAcc.meanFreq&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.mean&hellip;X</td>
+<td>fBodyAccJerk.mean&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.mean&hellip;Y</td>
+<td>fBodyAccJerk.mean&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.mean&hellip;Z</td>
+<td>fBodyAccJerk.mean&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.meanFreq&hellip;X</td>
+<td>fBodyAccJerk.meanFreq&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.meanFreq&hellip;Y</td>
+<td>fBodyAccJerk.meanFreq&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyAccJerk.meanFreq&hellip;Z</td>
+<td>fBodyAccJerk.meanFreq&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.mean&hellip;X</td>
+<td>fBodyGyro.mean&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.mean&hellip;Y</td>
+<td>fBodyGyro.mean&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.mean&hellip;Z</td>
+<td>fBodyGyro.mean&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.meanFreq&hellip;X</td>
+<td>fBodyGyro.meanFreq&hellip;X_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.meanFreq&hellip;Y</td>
+<td>fBodyGyro.meanFreq&hellip;Y_mean</td>
+</tr>
+<tr>
+<td>fBodyGyro.meanFreq&hellip;Z</td>
+<td>fBodyGyro.meanFreq&hellip;Z_mean</td>
+</tr>
+<tr>
+<td>fBodyAccMag.mean..</td>
+<td>fBodyAccMag.mean.._mean</td>
+</tr>
+<tr>
+<td>fBodyAccMag.meanFreq..</td>
+<td>fBodyAccMag.meanFreq.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyAccJerkMag.mean..</td>
+<td>fBodyBodyAccJerkMag.mean.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyAccJerkMag.meanFreq..</td>
+<td>fBodyBodyAccJerkMag.meanFreq.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyGyroMag.mean..</td>
+<td>fBodyBodyGyroMag.mean.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyGyroMag.meanFreq..</td>
+<td>fBodyBodyGyroMag.meanFreq.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyGyroJerkMag.mean..</td>
+<td>fBodyBodyGyroJerkMag.mean.._mean</td>
+</tr>
+<tr>
+<td>fBodyBodyGyroJerkMag.meanFreq..</td>
+<td>fBodyBodyGyroJerkMag.meanFreq.._mean</td>
+</tr>
+</tbody></table>
+
+</body>
+
+</html>
+
